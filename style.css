@@ -164,8 +164,27 @@ body {
 .hamburger {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    gap: 4px;
+    gap: 5px;
+    background: transparent;
+    border: 0;
+    padding: 10px;
+    margin: 0;
+    min-width: 44px;
+    min-height: 44px;
+    position: relative;
+    z-index: 1001;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.hamburger:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 .bar {
@@ -173,6 +192,9 @@ body {
     height: 3px;
     background: var(--text-primary);
     transition: var(--transition-fast);
+    pointer-events: none;
+    display: block;
+    border-radius: 2px;
 }
 
 /* Hero Section */

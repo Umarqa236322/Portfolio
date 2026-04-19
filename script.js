@@ -25,18 +25,36 @@ function initNavigation() {
         }
     });
 
+    const closeMenu = () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+    };
+
+    const openMenu = () => {
+        hamburger.classList.add('active');
+        navMenu.classList.add('active');
+        hamburger.setAttribute('aria-expanded', 'true');
+    };
+
     // Mobile menu toggle
-    hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
+    hamburger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (hamburger.classList.contains('active')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
     });
 
     // Close mobile menu when clicking on a link
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close the menu when switching back to desktop width
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) closeMenu();
     });
 
     // Active navigation link highlighting
